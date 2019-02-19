@@ -1,6 +1,6 @@
 # 1. 파이썬 표준 라이브러리 ex) os, random
 # 2. Core Django : 장고 프레임워크에 있는 것
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # 3. 3rd party library : django_extensions, pip install __
 # 4. 장고 프로젝트 App
 from .models import Board # 명시적 상대 import vs 암묵적 상대 import(From models import Board)
@@ -18,8 +18,14 @@ def create(request):
     content = request.POST.get('content')
     board = Board(title=title, content=content) 
     board.save()
-    return render(request, 'boards/create.html', {'board':board})
+    # return render(request, 'boards/create.html', {'board':board})
+    return redirect(f'/boards/{board.id}')
     
 def detail(request, pk):
     board = Board.objects.get(pk=pk)
     return render(request, 'boards/detail.html', {'board':board})
+    
+def delete(request, pk):
+    board = Board.objects.get(pk=pk)
+    board.delete()
+    return redirect('/boards')
