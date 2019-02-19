@@ -1,3 +1,5 @@
+{% extends 'boards/base.html %}
+
 {% block body %}
 <form action="/boards/create/" method="POST">
     {% csrf_token %}

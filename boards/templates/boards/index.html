@@ -6,7 +6,8 @@
 {% for board in boards %}
     <p>{{ board.id }}</p>
     <p>{{ board.title }}</p>
-    <p>{{ board.created_at|timesince }}</p>
+    <p>작성시간 : {{ board.created_at|timesince }} 전</p>
+    <p>수정시간 : {{ board.updated_at|timesince }} 전</p>
     <a href="{{board.pk}}">상세보기</a>
     <hr>
 {% endfor %}
