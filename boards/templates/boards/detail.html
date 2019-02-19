@@ -1,0 +1,11 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1>{{ board.id }}</h1>
+<hr>
+<h2>{{ board.title }}</h2>
+<p>{{ board.content }}</p>
+<p>{{ board.created_at }}</p>
+<p>{{ board.updated_at }}</p>
+<a href="/boards/">글 목록보기</a>
+{% endblock %}

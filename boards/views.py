@@ -7,7 +7,8 @@ from .models import Board # 명시적 상대 import vs 암묵적 상대 import(F
 
 # Create your views here.
 def index(request):
-    return render(request, 'boards/index.html')
+    boards = Board.objects.order_by('-id')
+    return render(request, 'boards/index.html', {'boards':boards})
     
 def new(request):
     return render(request, 'boards/new.html')
@@ -18,3 +19,7 @@ def create(request):
     board = Board(title=title, content=content) 
     board.save()
     return render(request, 'boards/create.html', {'board':board})
+    
+def detail(request, pk):
+    board = Board.objects.get(pk=pk)
+    return render(request, 'boards/detail.html', {'board':board})
